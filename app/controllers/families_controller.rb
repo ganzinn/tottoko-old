@@ -15,6 +15,13 @@ class FamiliesController < ApplicationController
     end
   end
 
+  def destroy
+    # 【Todo】権限チェック（関係性・ログインユーザー）
+    @family = Family.find(params[:id])
+    @family.destroy
+    redirect_to creator_path(params[:creator_id])
+  end
+
   private
 
   def family_user_form_params

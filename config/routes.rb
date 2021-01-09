@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :creators do
     resources :families, only: [:new, :create, :destroy]
   end
+  resources :works
 
 end

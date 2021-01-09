@@ -54,7 +54,7 @@ class CreatorsController < ApplicationController
       :creator_name,
       :creator_date_of_birth,
       :creator_gender_id,
-      :relation_id,
+      :relation_id
     ).merge(
       user_id: current_user.id
     )
@@ -64,7 +64,7 @@ class CreatorsController < ApplicationController
     params.require(:creator).permit(
       :name,
       :date_of_birth,
-      :gender_id,
+      :gender_id
     )
   end
 end

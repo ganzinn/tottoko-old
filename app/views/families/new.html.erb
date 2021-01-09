@@ -1,0 +1,21 @@
+<%= render "shared/header" %>
+
+<h1>作品を閲覧できる家族の追加</h1>
+
+<%= form_with model: @family_user_form, url: creator_families_path(@creator), local: true do |f| %>
+
+<div>
+  <label>追加する家族（登録ユーザー）のemail</label>
+  <p><%= f.text_field :user_email %></p>
+</div>
+
+<div>
+  <label>追加する家族と<%= @creator.name %>さんとの関係</label>
+  <p><%= f.collection_select(:relation_id, Relation.all, :id, :value, {}, {}) %></p>
+</div>
+
+<div>
+  <%= f.submit '完了' %>
+</div>
+
+<% end %>

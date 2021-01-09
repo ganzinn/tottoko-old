@@ -1,0 +1,37 @@
+<%= render "shared/header" %>
+
+<h1>お子さまの情報</h1>
+
+<%= link_to '編集', edit_creator_path(@creator) %>
+<%= link_to '削除', creator_path(@creator), method: :delete %>
+
+<div>
+  <p>お子さまの名前</p>
+  <%= @creator.name %>
+</div>
+
+<div>
+  <p>誕生日</p>
+  <%= @creator.date_of_birth.strftime("%Y年%-m月%-d日") %>
+</div>
+
+<div>
+  <p>性別</p>
+  <%= @creator.gender.value %>
+</div>
+
+<h2>閲覧できる家族</h2>
+<table>
+  <tr>
+    <th>子どもとの関係</th>
+    <th>ユーザー名</th>
+    <th>操作</th>
+  </tr>
+  <% @creator_families.each do |family| %>
+  <tr>
+    <td><%= family.relation.value %></td>
+    <td><%= family.user.name %></td>
+  </tr>
+  <% end %>
+</table>
+

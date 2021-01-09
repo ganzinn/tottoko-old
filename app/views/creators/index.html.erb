@@ -1,0 +1,14 @@
+<%= render "shared/header" %>
+
+<h1>家族設定</h1>
+
+<h2>お子さま一覧</h2>
+<ul>
+  <% @user_creators.each do |creator| %>
+  <li>
+    <p><%= link_to creator.name, creator_path(creator) %></p>
+    <p><%= age(creator) %> / <%= creator.date_of_birth.strftime("%Y年%-m月%-d日") %></p>
+  </li>
+  <% end %>
+</ul>
+<p><%= link_to 'お子さまを追加する', new_creator_path  %></p>

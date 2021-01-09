@@ -23,15 +23,15 @@
 <h2>閲覧できる家族</h2>
 <table>
   <tr>
-    <th>子どもとの関係</th>
     <th>ユーザー名</th>
+    <th>子どもとの関係</th>
     <th>操作</th>
   </tr>
   <% @creator_families.each do |family| %>
   <tr>
-    <td><%= family.relation.value %></td>
     <td><%= family.user.name %></td>
+    <td><%= family.relation.value %></td>
   </tr>
   <% end %>
 </table>
-
+<%= link_to '閲覧できる家族を追加', new_creator_family_path(@creator) %>

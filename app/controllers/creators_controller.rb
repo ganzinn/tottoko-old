@@ -1,14 +1,14 @@
 class CreatorsController < ApplicationController
   def new
-    @family_form = FamilyForm.new
+    @family_creator_form = FamilyCreatorForm.new
   end
 
   def create
-    @family_form = FamilyForm.new(family_form_params)
-    if @family_form.valid?
+    @family_creator_form = FamilyCreatorForm.new(family_creator_form_params)
+    if @family_creator_form.valid?
 
       # 【Todo】例外処理（トランザクション処理）実装要
-      @family_form.save
+      @family_creator_form.save
       # --------------------------------------------------------
 
       redirect_to root_path
@@ -49,12 +49,12 @@ class CreatorsController < ApplicationController
 
   private
 
-  def family_form_params
-    params.require(:family_form).permit(
+  def family_creator_form_params
+    params.require(:family_creator_form).permit(
       :creator_name,
       :creator_date_of_birth,
       :creator_gender_id,
-      :relation_id,
+      :relation_id
     ).merge(
       user_id: current_user.id
     )
@@ -64,7 +64,7 @@ class CreatorsController < ApplicationController
     params.require(:creator).permit(
       :name,
       :date_of_birth,
-      :gender_id,
+      :gender_id
     )
   end
 end

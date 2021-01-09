@@ -1,4 +1,4 @@
-class FamilyForm
+class FamilyCreatorForm
   include ActiveModel::Model
   include ActiveRecord::AttributeAssignment
   attr_accessor :user_id,

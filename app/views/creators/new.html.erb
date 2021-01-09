@@ -1,16 +1,18 @@
+<%= render "shared/header" %>
+
 <h1>お子さまの追加</h1>
 
 <%= form_with model: @family_form, url: creators_path, local: true do |f| %>
 
 <div>
   <label>お子さまの名前*</label>
-  <%= f.text_field :creator_name %>
+  <p><%= f.text_field :creator_name %></p>
 </div>
 
 <div>
   <label>誕生日*</label>
   <%# <%= f.date_select :creator_date_of_birth, use_month_numbers: true, start_year: 1930, end_year: Time.now.year, default: Date.new(1989, 1, 1) %>
-  <%= raw sprintf(
+  <p><%= raw sprintf(
     f.date_select(
       :creator_date_of_birth,
         use_month_numbers: true,
@@ -19,17 +21,17 @@
         end_year: Time.now.year,
         date_separator: '%s'),
       "<span> 年 </span>", "<span> 月 </span>") + "<span> 日 </span>"
-  %>
+  %></p>
 </div>
 
 <div>
   <label>性別</label>
-  <%= f.collection_select(:creator_gender_id, Gender.all, :id, :value, {}, {}) %>
+  <p><%= f.collection_select(:creator_gender_id, Gender.all, :id, :value, {}, {}) %></p>
 </div>
 
 <div>
   <label>こどもとの関係*</label>
-  <%= f.collection_select(:relation_id, Relation.all, :id, :value, {}, {}) %>
+  <p><%= f.collection_select(:relation_id, Relation.all, :id, :value, {}, {}) %></p>
 </div>
 
 <div>

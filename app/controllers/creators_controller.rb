@@ -17,6 +17,36 @@ class CreatorsController < ApplicationController
     end
   end
 
+  def index
+    @user_creators = Creator.where(
+      id: Family.where(user_id: current_user.id).select(:creator_id)
+    )
+  end
+
+  def show
+    @creator = Creator.find(params[:id])
+    @creator_families = Family.where(creator_id: params[:id]).includes(:user)
+  end
+
+  def edit
+    @creator = Creator.find(params[:id])
+  end
+
+  def update
+    @creator = Creator.find(params[:id])
+    if @creator.update(creator_params)
+      redirect_to creator_path(@creator)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @creator = Creator.find(params[:id])
+    @creator.destroy
+    redirect_to root_path
+  end
+
   private
 
   def family_form_params
@@ -29,7 +59,12 @@ class CreatorsController < ApplicationController
       user_id: current_user.id
     )
   end
-  
 
-
+  def creator_params
+    params.require(:creator).permit(
+      :name,
+      :date_of_birth,
+      :gender_id,
+    )
+  end
 end

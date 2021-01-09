@@ -1,0 +1,34 @@
+<%= render "shared/header" %>
+
+<h1>お子さまの情報編集</h1>
+
+<%= form_with model: @creator, local: true do |f| %>
+
+<div>
+  <label>お子さまの名前*</label>
+  <p><%= f.text_field :name %></p>
+</div>
+
+<div>
+  <label>誕生日*</label>
+  <p><%= raw sprintf(
+    f.date_select(
+      :date_of_birth,
+        use_month_numbers: true,
+        start_year: 1930,
+        end_year: Time.now.year,
+        date_separator: '%s'),
+      "<span> 年 </span>", "<span> 月 </span>") + "<span> 日 </span>"
+  %></p>
+</div>
+
+<div>
+  <label>性別</label>
+  <p><%= f.collection_select(:gender_id, Gender.all, :id, :value, {}, {}) %></p>
+</div>
+
+<div>
+  <%= f.submit '完了' %>
+</div>
+
+<% end %>

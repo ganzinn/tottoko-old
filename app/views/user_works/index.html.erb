@@ -11,14 +11,14 @@
   <% end %>
 </ul>
 
-<ul>
+<ul class="work-lists">
 <% @user_works.each do |work| %>
-  <li>
-    <%= link_to work_path(work) do %>
+  <li class="list">
+    <%= link_to work_path(work) , class: "work-link" do %>
       <%= image_tag work.images[0] %>
-      <p><%=  work.title %></p>
+      <div><%=  work.title %></div>
     <% end %>
-    <%= link_to work.creator.name, user_works_path(user_id: current_user.id, creator_id: work.creator.id) %>
+    <%= link_to work.creator.name, user_works_path(user_id: current_user.id, creator_id: work.creator.id), class: "creator-link" %>
   </li>
 <% end %>
 </ul>

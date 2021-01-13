@@ -1,0 +1,49 @@
+<%= render "shared/header" %>
+
+<h1>新規作品投稿</h1>
+
+<%= form_with model: @work, url: user_creators_path(current_user), local: true do |f| %>
+<div>
+  <label>作者*</label>
+  <p><%= f.collection_select(:creator_id, @user_creators, :id, :name, {}, {}) %></p>
+</div>
+
+<div>
+  <label>作品画像*</label>
+  <p> <%= f.file_field :images, name: 'work[images][]' %></p>
+</div>
+
+<div>
+  <label>作成日*</label>
+  <p><%= raw sprintf(
+    f.date_select(
+      :date,
+        use_month_numbers: true,
+        prompt:'---',
+        start_year: 1930,
+        end_year: Time.now.year,
+        date_separator: '%s'),
+      "<span> 年 </span>", "<span> 月 </span>") + "<span> 日 </span>"
+  %></p>
+</div>
+
+<div>
+  <label>タイトル</label>
+  <p><%= f.text_field :title %></p>
+</div>
+
+<div>
+  <label>作品説明</label>
+  <p><%= f.text_area :description %></p>
+</div>
+
+<div>
+  <label>公開範囲*</label>
+  <p><%= f.collection_select(:scope_id, Scope.all, :id, :value, {}, {}) %></p>
+</div>
+
+<div>
+  <%= f.submit '完了' %>
+</div>
+
+<% end %>

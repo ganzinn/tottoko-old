@@ -2,7 +2,7 @@
 
 <h1>新規作品投稿</h1>
 
-<%= form_with model: @work, url: user_creators_path(current_user), local: true do |f| %>
+<%= form_with model: @work, url: user_works_path(current_user), local: true do |f| %>
 <div>
   <label>作者*</label>
   <p><%= f.collection_select(:creator_id, @user_creators, :id, :name, {}, {}) %></p>

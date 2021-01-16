@@ -1,0 +1,20 @@
+<%= render "shared/header" %>
+
+<h2><%= @work.date.strftime("%Y年%-m月%-d日") %></h2>
+
+<p><%= @work.scope.value %></p>
+
+<% if edit_permission_check(@family) %>
+  <%= link_to '編集', edit_work_path(@work) %>
+  <%= link_to '削除', work_path(@work), method: :delete %>
+<% end %>
+
+<div class='work-img-content'>
+  <%= image_tag @work.images[0], class:"work-box-img" %>
+</div>
+
+<p><%= @work.title %></p>
+<p>by <%= @work.creator.name %></p>
+<br>
+
+<p><%= @work.description %></p>

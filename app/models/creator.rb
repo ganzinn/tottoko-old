@@ -4,4 +4,5 @@ class Creator < ApplicationRecord
 
   has_many :families, dependent: :destroy
   has_many :users, through: :families
+  has_many :works, dependent: :destroy
 end

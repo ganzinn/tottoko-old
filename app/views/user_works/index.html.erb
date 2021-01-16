@@ -1,0 +1,24 @@
+<%= render "shared/header" %>
+
+<p>こんにちは<%= link_to @user.name, user_path(@user) %>さん</p>
+
+<h2>表示作品</h2>
+
+<ul>
+  <li><%= link_to 'みんな', user_works_path(user_id: current_user.id) %></li>
+  <% @user_creators.each do |creator| %>
+  <li><%= link_to creator.name, user_works_path(user_id: current_user.id, creator_id: creator.id) %></li>
+  <% end %>
+</ul>
+
+<ul class="work-lists">
+<% @user_works.each do |work| %>
+  <li class="list">
+    <%= link_to work_path(work) , class: "work-link" do %>
+      <%= image_tag work.images[0] %>
+      <div><%=  work.title %></div>
+    <% end %>
+    <%= link_to work.creator.name, user_works_path(user_id: current_user.id, creator_id: work.creator.id), class: "creator-link" %>
+  </li>
+<% end %>
+</ul>

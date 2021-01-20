@@ -1,21 +1,31 @@
 <%= render "shared/header" %>
-
-<h1>作品を閲覧できる家族の追加</h1>
+<div class="container">
+<h5 class="screen-name">作品を閲覧できる家族の追加</h5>
+<div class="contents">
 
 <%= form_with model: @family_user_form, url: creator_families_path(@creator), local: true do |f| %>
 
-<div>
-  <label>追加する家族（登録ユーザー）のemail</label>
-  <p><%= f.text_field :user_email %></p>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.text_field :user_email, class: "validate" %>
+    <%= f.label :user_email, '追加する家族（登録ユーザー）のemail' %>
+  </div>
 </div>
 
-<div>
-  <label>追加する家族と<%= @creator.name %>さんとの関係</label>
-  <p><%= f.collection_select(:relation_id, Relation.all, :id, :value, {}, {}) %></p>
+<div class="row">
+  <div class="col s12 m6 l6 xl6">
+    <%= f.label :relation_id, "追加する家族と#{@creator.name}さんとの関係" %>
+    <%= f.collection_select(:relation_id, Relation.all, :id, :value, {}, {}) %>
+  </div>
 </div>
 
-<div>
-  <%= f.submit '完了' %>
+<div class="button_wrapper">
+  <%= button_tag '家族の追加', class: 'btn-large waves-effect waves-light', type: 'button', onclick: 'submit();' do %>
+    家族の追加<i class="material-icons right">send</i>
+  <% end %>
 </div>
 
 <% end %>
+
+</div>
+</div>

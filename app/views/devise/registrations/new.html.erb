@@ -1,34 +1,48 @@
-<h2>Sign up</h2>
+<%= render "shared/header" %>
+<div class="container">
+<h5 class="screen-name">ユーザー新規登録</h5>
+<div class="contents">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "validate" %>
+    <%= f.label :email, 'email（必須）' %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.password_field :password, placeholder: "#{@minimum_password_length}文字以上", autocomplete: "new-password", class: "validate" %>
+    <%= f.label :password, 'パスワード（必須）' %>
   </div>
+</div>  
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "validate" %>
+    <%= f.label :password_confirmation, 'パスワード（再入力）' %>
   </div>
+</div>  
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.text_field :name, class: "validate" %>
+    <%= f.label :name, '名前（必須）' %>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+<div class="button_wrapper">
+  <%= button_tag '', class: 'btn-large waves-effect waves-light', type: 'button', onclick: 'submit();' do %>
+    登録<i class="material-icons right">send</i>
+  <% end %>
+</div>
+
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%# <%= render "devise/shared/links" %>
+
+</div>
+</div>

@@ -1,4 +1,7 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render "shared/header" %>
+<div class="container">
+<h5 class="screen-name">Edit <%= resource_name.to_s.humanize %></h5>
+<div class="contents">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -41,8 +44,11 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h5 class="screen-name">Cancel my account</h5>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+</div>
+</div>

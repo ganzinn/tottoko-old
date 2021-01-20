@@ -1,14 +1,19 @@
 <%= render "shared/header" %>
+<div class="container">
+<h5 class="screen-name">お子さま一覧</h5>
+<div class="contents">
 
-<h1>家族設定</h1>
-
-<h2>お子さま一覧</h2>
-<ul>
+<ul class="creator-unit">
   <% @user_creators.each do |creator| %>
-  <li>
-    <p><%= link_to creator.name, creator_path(creator) %></p>
-    <p><%= age(creator) %> / <%= creator.date_of_birth.strftime("%Y年%-m月%-d日") %></p>
+  <li class="creator-lists">
+    <div><%= link_to creator.name, creator_path(creator) %></div>
+    <div><%= age(creator) %> / <%= creator.date_of_birth.strftime("%Y年%-m月%-d日") %></div>
   </li>
   <% end %>
 </ul>
-<p><%= link_to 'お子さまを追加する', new_user_creator_path(user_id: current_user)  %></p>
+<div class="right-align">
+  <%= link_to '+お子さまを追加する', new_user_creator_path(user_id: current_user), class: "new-creator" %>
+</div>
+
+</div>
+</div>

@@ -1,0 +1,129 @@
+@import 'materialize-css/dist/css/materialize';
+
+.contents{
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.logo {
+  // width: 200px;
+  height: 70px;
+}
+
+// .work-link > img {
+//   width: 33vh;
+//   height: 33vh;
+// }
+
+.work-img-content{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(205, 202, 202);
+}
+
+.work-box-img {
+  height: 50vh;
+  min-height: 500px;
+  max-width:100%;
+  object-fit: contain;
+}
+
+.row.m-flex{
+  float: none;
+  display: flex;
+  flex-flow: row wrap;
+}
+.row.m-flex.m-flex .col{ /* 優先度を上げるために2回指定 */
+  float: none;
+}
+.row.m-flex.m-flex .col:not([class*="offset-"]){
+  margin-left: unset; /* 元々ついているmargin-left: autoを解除 */
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  margin-right: 0px;
+}
+
+.datetime{
+  display: inline-flex;
+  width: 66vw;
+}
+
+.text-baseline{
+  margin-top: 12px;
+  margin-right: 15px;
+  vertical-align: baseline;
+}
+
+.screen-name{
+  margin: 20px auto;
+  text-align: center
+}
+
+.button_wrapper{
+  margin: 30px auto;
+  text-align: center
+}
+
+.ori-circle {
+  color: #0c0c0c;
+  background-color:#E0E0E0;
+  padding: 0;
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.everyone-circle{
+  @extend.ori-circle;
+  color: #FFF;
+  background-color: #F00;
+  margin-right: 20px;
+}
+
+.flex{
+  display: flex;
+}
+
+.work-title-wrapper{
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.work-title{
+  font-size: 30px;
+}
+
+.work-creator{
+  position: absolute;
+  right: 0;
+}
+
+.creator-unit{
+  max-width: 768px;
+  margin: 30px auto;
+}
+
+.creator-lists{
+  margin-bottom: 20px;
+  border-bottom:1px solid rgb(205, 202, 202);
+}
+
+.new-creator{
+  text-align: right;
+}
+
+.attribute{
+  margin-bottom: 20px;
+}
+
+#family {
+  margin:30px auto;
+}

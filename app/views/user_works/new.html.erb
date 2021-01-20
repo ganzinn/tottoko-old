@@ -1,49 +1,78 @@
 <%= render "shared/header" %>
-
-<h1>新規作品投稿</h1>
+<div class="container">
+<h5 class="screen-name">新規作品投稿</h5>
+<div class="contents">
 
 <%= form_with model: @work, url: user_works_path(current_user), local: true do |f| %>
-<div>
-  <label>作者*</label>
-  <p><%= f.collection_select(:creator_id, @user_creators, :id, :name, {}, {}) %></p>
+
+<div class="row">
+  <div class="col s12 m6 l4 xl3">
+    <%= f.label :creator_id, '作者（必須）' %>
+    <%= f.collection_select(:creator_id, @user_creators, :id, :name, {}, {}) %>
+  </div>
 </div>
 
-<div>
-  <label>作品画像*</label>
-  <p> <%= f.file_field :images, name: 'work[images][]' %></p>
+<div class="row">
+  <div class="col s12 m6 l6 xl6">
+    <%= f.label :images, '作品画像（必須）' %><br>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>画像選択</span>
+        <%= f.file_field :images, name: 'work[images][]', multiple: :true %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="複数枚指定できます">
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
-  <label>作成日*</label>
-  <p><%= raw sprintf(
-    f.date_select(
-      :date,
-        use_month_numbers: true,
-        prompt:'---',
-        start_year: Time.now.year,
-        end_year: 1930,
-        date_separator: '%s'),
-      "<span> 年 </span>", "<span> 月 </span>") + "<span> 日 </span>"
-  %></p>
+<div class="row">
+  <div class="col s12 m4 l2 xl2">
+  <%= f.label :date, '作成日（必須）' %><br>
+    <div class="datetime">
+      <%= raw sprintf(
+        f.date_select(
+          :date,
+          use_month_numbers: true,
+          prompt:'---',
+          start_year: Time.now.year,
+          end_year: 1930,
+          date_separator: '%s',
+          class: ""),
+        '<span class="text-baseline"> 年 </span>', '<span class="text-baseline"> 月 </span>') + '<span class="text-baseline"> 日 </span>'
+      %>
+    </div>
+  </div>
 </div>
 
-<div>
-  <label>タイトル</label>
-  <p><%= f.text_field :title %></p>
+<div class="row">
+  <div class="col s12 m6 l4 xl3">
+    <%= f.label :scope_id, '公開範囲（必須）' %>
+    <%= f.collection_select(:scope_id, Scope.all, :id, :value, {}, {}) %>
+  </div>
 </div>
 
-<div>
-  <label>作品説明</label>
-  <p><%= f.text_area :description %></p>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.text_field :title, class: "validate" %>
+    <%= f.label :title, 'タイトル' %>
+  </div>
 </div>
 
-<div>
-  <label>公開範囲*</label>
-  <p><%= f.collection_select(:scope_id, Scope.all, :id, :value, {}, {}) %></p>
+<div class="row">
+  <div class="input-field col s12">
+    <%= f.text_area :description, class: "materialize-textarea" %>
+    <%= f.label :description, '作品説明' %>
+  </div>
 </div>
 
-<div>
-  <%= f.submit '完了' %>
+<div class="button_wrapper">
+  <%= button_tag '', class: 'btn-large waves-effect waves-light', type: 'button', onclick: 'submit();' do %>
+    作品投稿<i class="material-icons right">send</i>
+  <% end %>
 </div>
 
 <% end %>
+</div>
+</div>

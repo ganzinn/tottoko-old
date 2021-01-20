@@ -16,7 +16,6 @@ class UserWorksController < ApplicationController
     end
 
     @user_creators = Creator.where(id: user_creator_ids)
-    @user = User.find(current_user.id)
 
     # 閲覧権限チェック
     user_work_ids = []
@@ -35,20 +34,22 @@ class UserWorksController < ApplicationController
   end
 
   def new
-    @user_creators = Creator.where(
-      id: Family.where(user_id: current_user.id).select(:creator_id)
-    )
     @work = Work.new
+    @user_creators = Creator.where(
+      # 関係性がパパ・ママのみ
+      id: Family.where(user_id: current_user.id, relation_id: [1, 2]).select(:creator_id)
+    )
   end
 
   def create
-    @user_creators = Creator.where(
-      id: Family.where(user_id: current_user.id).select(:creator_id)
-    )
+    family = Family.find_by(user_id: current_user.id, creator_id: work_params[:creator_id])
     @work = Work.new(work_params)
-    if @work.save
+    if family && [1,2].include?(family.relation_id) && @work.save
       redirect_to user_works_path(user_id: current_user)
     else
+      @user_creators = Creator.where(
+        id: Family.where(user_id: current_user.id, relation_id: [1, 2]).select(:creator_id)
+      )
       render :new
     end
   end

@@ -6,6 +6,7 @@ class WorksController < ApplicationController
   def show
     # 閲覧権限チェック
     if @work.scope_id == 3 # 一般公開
+      @family = Family.find_by(user_id: current_user.id, creator_id: @work.creator_id) if user_signed_in?
       return
     elsif user_signed_in?
       @family = Family.find_by(user_id: current_user.id, creator_id: @work.creator_id)

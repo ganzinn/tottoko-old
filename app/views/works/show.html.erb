@@ -1,20 +1,34 @@
 <%= render "shared/header" %>
+<div class="container">
 
-<h2><%= @work.date.strftime("%Y年%-m月%-d日") %></h2>
+<h5 class="screen-name"><%= @work.date.strftime("%Y年%-m月%-d日") %></h5>
 
-<p><%= @work.scope.value %></p>
+<div class="right-align">
+  <%= work_scope_icon(@work) %>
+  <%= @work.scope.value %>
+</div>
 
 <% if edit_permission_check(@family) %>
-  <%= link_to '編集', edit_work_path(@work) %>
-  <%= link_to '削除', work_path(@work), method: :delete %>
+  <div class="right-align">
+    <%= link_to '編集', edit_work_path(@work) %>
+    <span>｜</span>
+    <%= link_to '削除', work_path(@work), method: :delete %>
+  </div>
 <% end %>
 
 <div class='work-img-content'>
-  <%= image_tag @work.images[0], class:"work-box-img" %>
+  <%# <div class="slider">
+    <ul class="slides"> %>
+      <%= image_tag @work.images[0], class:"work-box-img materialboxed" %>
+    <%# </ul>
+  </div> %>
 </div>
 
-<p><%= @work.title %></p>
-<p>by <%= @work.creator.name %></p>
-<br>
+<div class="work-title-wrapper">
+  <span class="work-title"><%= @work.title %></span>
+  <span class="work-creator">by <%= @work.creator.name %>(<%= age(@work.creator, @work.date)%>)</span>
+</div>
 
 <p><%= @work.description %></p>
+
+</div>

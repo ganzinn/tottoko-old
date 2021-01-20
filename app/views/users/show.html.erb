@@ -1,12 +1,22 @@
 <%= render "shared/header" %>
-
-<h1><%= @user.name %>さんの情報</h1>
+<div class="container">
+<h5 class="screen-name"><%= @user.name %>さんの情報</h5>
+<div class="contents">
 
 <%# 編集ボタンを追加 %>
-<%= link_to '編集', edit_user_registration_path(current_user) %>
+<div class="right-align">
+  <%= link_to '編集', edit_user_registration_path(current_user) %>
+</div>
 
-<p>メールアドレス</p>
-<p><%= @user.email %></p>
+<div class="attribute">
+  <label>メールアドレス</label><br>
+  <%= @user.email %>
+</div>
 
-<p>名前</p>
-<p><%= @user.name %></p>
+<div class="attribute">
+  <label>名前</label><br>
+  <%= @user.name %>
+</div>
+
+</div>
+</div>

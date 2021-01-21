@@ -5,7 +5,9 @@
     <%= link_to root_path, class: "brand-logoa" do %>
       <%= image_tag "logo.png", class: "logo" %>
     <% end %>
-    <a href="#" data-target="mobile-demo" class="light-blue-text text-accent-4 right sidenav-trigger"><i class="material-icons">menu</i></a>
+    <a href="#" data-target="mobile-demo" class="light-blue-text text-accent-4 right sidenav-trigger">
+      <i class="material-icons">menu</i>
+    </a>
     <ul class="right hide-on-med-and-down">
       <% if user_signed_in? %>
         <li><%= link_to "ログイン：#{current_user.name}", user_path(current_user), class: "light-blue-text text-accent-4" %></li>

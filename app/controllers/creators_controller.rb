@@ -2,7 +2,11 @@ class CreatorsController < ApplicationController
   def show
     @creator = Creator.find(params[:id])
     @family = Family.find_by(user_id: current_user.id, creator_id: params[:id])
-    @creator_families = Family.where(creator_id: params[:id]).includes(:user)
+    if @creator && @family
+      @creator_families = Family.where(creator_id: params[:id]).includes(:user)
+    else
+      redirect_to user_creators_path(current_user)
+    end
   end
 
   def edit

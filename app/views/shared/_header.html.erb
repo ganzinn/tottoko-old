@@ -8,7 +8,7 @@
     <a href="#" data-target="mobile-demo" class="light-blue-text text-accent-4 right sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <% if user_signed_in? %>
-        <li><%= link_to "ログイン：#{current_user.name}さん", user_path(current_user), class: "light-blue-text text-accent-4" %></li>
+        <li><%= link_to "ログイン：#{current_user.name}", user_path(current_user), class: "light-blue-text text-accent-4" %></li>
         <li><%= link_to '作品投稿', new_user_work_path(user_id: current_user), class: "light-blue-text text-accent-4" %></li>
         <li><%= link_to '家族設定', user_creators_path(user_id: current_user), class: "light-blue-text text-accent-4" %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "light-blue-text text-accent-4" %></li>
@@ -22,7 +22,7 @@
 
 <ul class="sidenav right" id="mobile-demo">
   <% if user_signed_in? %>
-    <li><%= link_to "ログイン：#{current_user.name}さん", user_path(current_user), class: "light-blue-text text-accent-4" %></li>
+    <li><%= link_to "ログイン：#{current_user.name}", user_path(current_user), class: "light-blue-text text-accent-4" %></li>
     <li><%= link_to '作品投稿', new_user_work_path(user_id: current_user), class: "light-blue-text text-accent-4" %></li>
     <li><%= link_to '家族設定', user_creators_path(user_id: current_user), class: "light-blue-text text-accent-4" %></li>
     <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "light-blue-text text-accent-4" %></li>

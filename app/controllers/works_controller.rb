@@ -40,10 +40,9 @@ class WorksController < ApplicationController
   # 編集・削除権限チェック
   def edit_permission_check
     @family = Family.find_by(user_id: current_user.id, creator_id: @work.creator_id)
-    unless Family.edit_permission_check(@family)
-      redirect_to root_path
-      nil
-    end
+    return if Family.edit_permission_check(@family)
+
+    redirect_to root_path
   end
 
   def work_params

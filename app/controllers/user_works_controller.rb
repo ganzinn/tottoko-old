@@ -23,11 +23,7 @@ class UserWorksController < ApplicationController
         .select('works.id AS id, families.id AS family_id, works.scope_id AS scope_id, families.relation_id AS relation_id')
         .where(creator_id: select_creator_ids, families: { user_id: current_user })
         .find_each do |work|
-          if work.scope_id == 3 # 一般公開
-            user_work_ids << work.id
-          elsif work.scope.targets.include?(work.relation_id)
-            user_work_ids << work.id
-          end
+          user_work_ids << work.id if work.scope_id == 3 || work.scope.targets.include?(work.relation_id)
         end
 
     @user_works = Work.where(id: user_work_ids).order('date DESC').includes(:creator)

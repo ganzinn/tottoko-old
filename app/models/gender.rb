@@ -5,7 +5,4 @@ class Gender < ActiveHash::Base
     { id: 2, value: '女の子' },
     { id: 3, value: '指定なし' }
   ]
-
-  include ActiveHash::Associations
-  has_many :creators
 end

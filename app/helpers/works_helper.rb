@@ -11,6 +11,6 @@ module WorksHelper
                   else
                     'lock'
                   end
-    raw("<i class='tiny material-icons'>#{icon_string}</i>")
+    tag.i(class: 'tiny material-icons') { icon_string }
   end
 end

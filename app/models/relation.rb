@@ -8,9 +8,6 @@ class Relation < ActiveHash::Base
     { id: 5, value: 'おじさん' },
     { id: 6, value: 'おばさん' },
     { id: 7, value: '子ども自身' },
-    { id: 8, value: '親族ほか' },
+    { id: 8, value: '親族ほか' }
   ]
-
-  include ActiveHash::Associations
-  has_many :families
 end

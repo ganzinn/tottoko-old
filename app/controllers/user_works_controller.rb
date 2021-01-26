@@ -26,7 +26,7 @@ class UserWorksController < ApplicationController
           user_work_ids << work.id if work.scope_id == 3 || work.scope.targets.include?(work.relation_id)
         end
 
-    @user_works = Work.where(id: user_work_ids).order('date DESC').includes(:creator)
+    @user_works = Work.where(id: user_work_ids).order('date DESC').with_attached_images.includes(:creator)
   end
 
   def new

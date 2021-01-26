@@ -4,15 +4,10 @@ class WorksController < ApplicationController
   before_action :edit_permission_check, only: [:edit, :update, :destroy]
 
   def show
+    @family = Family.find_by(user_id: current_user.id, creator_id: @work.creator_id) if user_signed_in?
+
     # 閲覧権限チェック
-    if @work.scope_id == 3 # 一般公開
-      @family = Family.find_by(user_id: current_user.id, creator_id: @work.creator_id) if user_signed_in?
-    elsif user_signed_in?
-      @family = Family.find_by(user_id: current_user.id, creator_id: @work.creator_id)
-      redirect_to root_path unless @family && @work.scope.targets.include?(@family.relation_id)
-    else
-      redirect_to root_path
-    end
+    redirect_to root_path unless @work.scope_id == 3 || (@family && @work.scope.targets.include?(@family.relation_id))
   end
 
   def edit
